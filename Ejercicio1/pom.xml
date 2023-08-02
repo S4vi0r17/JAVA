@@ -12,9 +12,6 @@
     <groupId>Ejercicio1</groupId>
     <artifactId>Ejercicio1</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>Ejercicio2</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
