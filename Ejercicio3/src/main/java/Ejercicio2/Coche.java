@@ -10,15 +10,15 @@ public class Coche {
         this.precio = precio;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
 
     public float getPrecio() {
         return precio;
+    }
+
+    public void mostrarDatos (){
+        System.out.println("\nEl coche mas barato es: ");
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Precio: " + precio);
     }
 }
