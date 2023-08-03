@@ -1,13 +1,13 @@
 # Índice
 
 - [Creación de clases y objetos](#creación-de-clases-y-objetos)
-- [Creación de métodos](#creación-de-métodos) 
-- [Constructores](#constructores)
+- [Creación de métodos](#creación-de-métodos)
+- [Constructores](#constructores) 
 - [Sobrecarga](#sobrecarga)
 - [Modificadores de acceso](#modificadores-de-acceso)
 - [Encapsulamiento](#encapsulamiento)
 - [Constantes](#constantes)
-- [Clases wrapper](#clases-wrapper)
+- [Clases wrapper](#clases-wrapper)  
 - [Miembros estáticos](#miembros-estáticos)
 
 # Creación de clases y objetos en Java POO
