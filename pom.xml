@@ -25,6 +25,7 @@
         <module>FinalClassesMethods</module>
         <module>OverrideMembers</module>
         <module>abstractClassesMethods</module>
+        <module>polymorphism</module>
     </modules>
 
     <properties>
