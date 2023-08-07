@@ -21,6 +21,8 @@
         <module>Ejercicio6</module>
         <module>Ejercicio7</module>
         <module>Ejercicio8</module>
+        <module>Inheritance</module>
+        <module>FinalClassesMethods</module>
     </modules>
 
     <properties>
