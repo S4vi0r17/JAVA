@@ -1,14 +1,16 @@
 # Índice
 
 - [Creación de clases y objetos](#creación-de-clases-y-objetos)
-- [Creación de métodos](#creación-de-métodos)
-- [Constructores](#constructores) 
+- [Creación de métodos](#creación-de-métodos) 
+- [Constructores](#constructores)
 - [Sobrecarga](#sobrecarga)
 - [Modificadores de acceso](#modificadores-de-acceso)
 - [Encapsulamiento](#encapsulamiento)
 - [Constantes](#constantes)
-- [Clases wrapper](#clases-wrapper)  
+- [Clases wrapper](#clases-wrapper)
 - [Miembros estáticos](#miembros-estáticos)
+- [Herencia](#Herencia)
+- [Clases y Métodos Final](#Clases-y-Métodos-Final)
 
 # Creación de clases y objetos en Java POO
 
@@ -702,3 +704,111 @@ Como el contador es estático, es compartido entre todos los objetos Libro. Cada
 Si fuese un contador normal, pertenecería a cada objeto por separado en lugar de ser global a la clase.
 
 > En resumen, los contadores estáticos permiten llevar un recuento global de cuántos objetos se crean o cuentan otras métricas a nivel de toda la clase.
+
+
+# Herencia
+
+La herencia permite que una clase (subclase) herede los miembros de otra (superclase). La subclase puede acceder a los datos y comportamiento de la superclase, además de definir sus propios miembros.
+
+## Sintaxis
+
+Mediante la palabra `extends`:
+
+
+```java
+class Subclase extends Superclase {
+
+}
+```
+
+## Características
+
+- Permite el reuso de código y comportamiento.
+- Las subclases heredan atributos, métodos, constructores de la superclase (a menos que sean privados)
+- Se puede acceder a los miembros heredados directamente.
+- Se puede sobreescribir métodos de la superclase.
+- Se aplica en objetos a través de polimorfismo.
+
+## Ejemplo
+
+```java
+class Empleado {
+  float salario;
+  
+  float getSalario() {
+    return salario; 
+  }
+}
+
+class Programador extends Empleado {
+  String lenguaje;
+}
+```
+
+El programador hereda el atributo salario y el método getSalario() de Empleado.
+
+## Ventajas
+
+- Reduce duplicación de código.
+- Crea jerarquías de clases con relaciones padre-hijo.
+- Permite extender la funcionalidad de clases existentes.
+
+>- Usar la herencia con moderación y solo cuando tenga sentido en el dominio del problema.
+>- Favorecer la composición frente a clases muy acopladas por herencia.
+>- Documentar bien las jerarquías para facilitar mantenimiento.
+
+# Clases y Métodos Final
+
+## Clases Finales
+
+La palabra reservada `final` hace que una clase no pueda ser heredada de otra.
+
+```java
+public final class ClaseFinal {
+
+}
+```
+
+- Impide que otras clases hereden de ella mediante extends.
+- Útil para clases que no necesitan ser extendidas.
+- Las clases String, Integer y otras wrappers son final por defecto.
+
+## Métodos Finales 
+
+Un método final no puede ser sobreescrito en clases que hereden de ella.
+
+```java 
+public class ClaseBase {
+
+  public final void metodoFinal() {
+    //código 
+  }
+
+}
+
+public class ClaseHija extends ClaseBase {
+  
+  // Esto genera error
+  public void metodoFinal(){ 
+    //código
+  }
+
+}
+```
+
+- Obliga a que este método tenga siempre la implementación de la superclase.
+- Útil para métodos críticos que no deban cambiarse en subclases.
+
+## Ventajas
+
+- Previenen modificaciones inesperadas por otras clases.
+- Fuerzan invariantes en ciertas clases y métodos.
+- El compilador puede hacer optimizaciones extras.
+
+## Desventajas
+
+- Pierden flexibilidad y polimorfismo.
+- Dificultan testing y extensibilidad en algunos casos.
+- Requieren analizar bien si deben ser aplicadas.
+
+>En resumen, final proporciona restricciones adicionales para clases y métodos que no deban ser sobreescritos por subclases.
