@@ -14,6 +14,7 @@
 - [Sobrescritura de Métodos](#Sobrescritura-de-Métodos)
 - [Clases y Métodos Abstractos](#Clases-y-Métodos-Abstractos)
 - [Polimorfismo en Java](#PolimorfismoenJava)
+- [Upcasting y Downcasting](#Upcasting-y-Downcasting)
 
 # Creación de clases y objetos en Java POO
 
@@ -991,3 +992,67 @@ El método llamado depende de los tipos de argumentos enviados.
 - Desacopla las clases.
 
 > En resumen, el polimorfismo es clave en POO para crear sistemas flexibles y extensibles que reducen acoplamiento.
+
+
+# Upcasting y Downcasting 
+
+El upcasting y downcasting permiten convertir objetos entre tipos de una jerarquía de herencia.
+
+## Upcasting 
+
+Convertir un objeto de una subclase a una superclase.
+
+```java
+Empleado empleado = new Programador();
+``` 
+
+Este código crea un Programador pero lo asigna a una variable Empleado. Esto es upcasting porque se convierte a un tipo superior en la jerarquía.
+
+## Downcasting
+
+Convertir un objeto de una superclase a una subclase.
+
+```java
+Empleado empleado = new Programador();
+Programador programador = (Programador) empleado; 
+```
+
+Esto convierte el Empleado a una variable más específica Programador. Esto es downcasting.
+
+## Reglas
+
+- El upcasting se puede hacer de forma implícita.
+- El downcasting requiere un cast explícito.
+- El downcasting puede fallar en tiempo de ejecución si el objeto no es de ese tipo.
+
+## Usos comunes
+
+- Polimorfismo y métodos de clases derivadas
+- Acceso a miembros de la subclase
+- Patrones como Visitor, Composite, etc.
+
+## Ejemplo
+
+```java
+public class Ejemplo {
+
+  public static void main(String[] args) {
+  
+    Empleado emp = new Programador(); // Upcasting
+  
+    imprimirDetalles(emp);
+
+    Programador p = (Programador) emp; // Downcasting
+    
+    p.codigoLenguaje("Java");
+
+  }
+
+  public static void imprimirDetalles(Empleado e) {
+    // Polimorfismo
+  }
+
+}
+```
+
+>En resumen, el upcasting y downcasting permiten navegar entre la jerarquía de tipos en Java.
