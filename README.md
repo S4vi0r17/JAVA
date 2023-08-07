@@ -11,6 +11,9 @@
 - [Miembros estáticos](#miembros-estáticos)
 - [Herencia](#Herencia)
 - [Clases y Métodos Final](#Clases-y-Métodos-Final)
+- [Sobrescritura de Métodos](#Sobrescritura-de-Métodos)
+- [Clases y Métodos Abstractos](#Clases-y-Métodos-Abstractos)
+- [Polimorfismo en Java](#PolimorfismoenJava)
 
 # Creación de clases y objetos en Java POO
 
@@ -812,3 +815,179 @@ public class ClaseHija extends ClaseBase {
 - Requieren analizar bien si deben ser aplicadas.
 
 >En resumen, final proporciona restricciones adicionales para clases y métodos que no deban ser sobreescritos por subclases.
+
+# Sobrescritura de Métodos
+
+La sobrescritura (overriding) permite que las subclases redefinan la implementación de métodos heredados de la superclase.
+
+## Sintaxis
+
+```java
+@Override 
+tipoDevuelto nombreMetodo(args) {
+  //nueva implementación
+}
+``` 
+
+Se usa la misma firma de método y se agrega la anotación @Override (opcional pero recomendada).
+
+## Reglas
+
+- Debe tener la misma firma (nombre, argumentos, tipo de retorno)
+- Debe ser al menos tan accessible como el método original 
+- No se puede cambiar la excepción lanzada originalmente
+- Debe ser IS-A (subtipo del original)
+
+## Ejemplo
+
+```java
+public class Empleado {
+
+  public String obtenerDetalles() {
+    return "Empleado";
+  }
+  
+}
+
+public class Programador extends Empleado {
+
+  @Override
+  public String obtenerDetalles() {
+    return "Programador";
+  }
+
+} 
+```
+
+## Ventajas
+
+- Permite que las subclases tengan comportamientos específicos.
+- Centraliza comportamiento común en la superclase.
+- El código se adapta fácilmente a nuevos requisitos.
+
+> En resumen, la sobrescritura es clave en POO para extender y personalizar comportamientos heredados.
+
+
+# Clases y Métodos Abstractos
+
+Las clases y métodos abstractos permiten crear generalizaciones y definir comportamientos que serán implementados por subclases.
+
+## Clases Abstractas
+
+Se declaran con la palabra `abstract`:
+
+```java
+public abstract class ClaseAbstracta {
+
+  //codigo
+
+}
+```
+
+- No se pueden instanciar directamente.
+- Obligan a que otras clases hereden de ella.
+- Pueden tener atributos, métodos concretos y abstractos.
+
+## Métodos Abstractos
+
+Se declaran con la palabra `abstract`:
+
+```java
+public abstract void metodoAbstracto();
+```
+
+- Solo se declaran, no se implementan.
+- Las subclases obligatoriamente los deben implementar.
+- No pueden ser private, final o static.
+
+## Ejemplo
+
+```java
+public abstract class Figura {
+
+  abstract void calcularArea();
+
+}
+
+public class Circulo extends Figura {
+
+  @Override
+  void calcularArea() {
+    // implementación
+  }
+
+}
+```
+
+## Ventajas
+
+- Generalizar comportamientos comunes.
+- Definir detalles implementación a subclases. 
+- Asegurar abstracciones coherentes.
+
+- Obligan a un diseño orientado a interfaces.
+
+> En resumen, las clases y métodos abstractos permiten crear jerarquías de clases genéricas basadas en comportamientos abstractos.
+
+
+# Polimorfismo en Java
+
+El polimorfismo permite que las referencias y variables de una superclase puedan apuntar a objetos de sus subclases.
+
+## Tipos
+
+Hay dos formas de aplicar polimorfismo en Java:
+
+**Sobreescritura:** Las subclases sobreescriben los métodos de la superclase.
+
+**Sobrecarga:** Una clase tiene múltiples métodos con el mismo nombre pero firma distinta.
+
+## Ejemplo de Sobre-escritura
+
+```java
+class Animal {
+  public void hacerRuido() {
+    System.out.println("Ruido genérico");
+  }
+}
+
+class Perro extends Animal {
+  public void hacerRuido(){
+    System.out.println("Ladrido!"); 
+  }
+}
+
+Animal a = new Perro();
+a.hacerRuido(); // Resultado: Ladrido!
+```
+
+Aunque la variable es de la superclase Animal, al invocar haceRuido() se ejecuta la versión del Perro por polimorfismo.
+
+## Ejemplo de Sobrecarga
+
+```java
+class Operaciones {
+  
+  public int sumar(int a, int b){
+    return a + b;
+  }
+  
+  public double sumar(double a, double b){
+    return a + b;
+  }
+}
+
+Operaciones o = new Operaciones();
+o.sumar(5, 3); // llama al método int
+o.sumar(1.5, 3.2); // llama al método double
+```
+
+El método llamado depende de los tipos de argumentos enviados.
+
+## Ventajas
+
+- Reduce repetición de código.
+- Permite extender fácilmente funcionalidades.
+- Desacopla las clases.
+
+> En resumen, el polimorfismo es clave en POO para crear sistemas flexibles y extensibles que reducen acoplamiento.
