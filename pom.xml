@@ -23,6 +23,8 @@
         <module>Ejercicio8</module>
         <module>Inheritance</module>
         <module>FinalClassesMethods</module>
+        <module>OverrideMembers</module>
+        <module>abstractClassesMethods</module>
     </modules>
 
     <properties>
