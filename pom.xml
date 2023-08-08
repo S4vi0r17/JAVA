@@ -27,6 +27,7 @@
         <module>abstractClassesMethods</module>
         <module>polymorphism</module>
         <module>Ejercicio9</module>
+        <module>Ejercicio10</module>
     </modules>
 
     <properties>
