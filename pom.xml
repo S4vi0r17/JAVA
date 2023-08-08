@@ -28,6 +28,7 @@
         <module>polymorphism</module>
         <module>Ejercicio9</module>
         <module>Ejercicio10</module>
+        <module>Intefaces</module>
     </modules>
 
     <properties>
