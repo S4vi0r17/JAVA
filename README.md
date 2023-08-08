@@ -15,6 +15,8 @@
 - [Clases y Métodos Abstractos](#Clases-y-Métodos-Abstractos)
 - [Polimorfismo en Java](#PolimorfismoenJava)
 - [Upcasting y Downcasting](#Upcasting-y-Downcasting)
+- [Herencia Múltiple en Java](#Herencia-Múltiple-en-Java)
+- [Herencia Múltiple con Interfaces](#Herencia-Múltiple-con-Interfaces)
 
 # Creación de clases y objetos en Java POO
 
@@ -1056,3 +1058,148 @@ public class Ejemplo {
 ```
 
 >En resumen, el upcasting y downcasting permiten navegar entre la jerarquía de tipos en Java.
+
+# Herencia Múltiple en Java
+
+A diferencia de otros lenguajes, Java no permite heredar directamente de más de una clase padre. Sin embargo, se puede simular herencia múltiple de otras formas:
+
+## Interfaces
+
+Java permite que una clase implemente múltiples interfaces. 
+
+```java
+public class Smartphone implements Phone, Camera, GPS {
+
+  //implements comportamiento de las interfaces
+
+}
+```
+
+>- Permiten que una clase implemente múltiples interfaces mediante la palabra implements.
+>- Las interfaces solo definen la firma de los métodos, no la implementación.  
+>- La clase debe implementar todos los métodos declarados en las interfaces.
+>- Es la forma más común de lograr "herencia múltiple" en Java.
+
+Las interfaces proveen herencia múltiple de tipo de comportamiento pero no de implementación.
+
+## Composición 
+
+Una clase puede contener instancias de otras clases mediante composición:
+
+```java
+public class Automovil {
+
+  Motor motor = new Motor();
+  GPS gps = new GPS();
+  
+  //agrega comportamiento de Motor y GPS
+}
+```
+>- Consiste en que una clase contenga instancias de otras clases como atributos.
+>- Permite obtener funcionalidades de otras clases sin heredarlas directamente.
+>- Se debe encapsular bien para que la clase compuesta no exponga detalles innecesarios.
+>- Requiere crear las instancias y delegar comportamientos a ellas.
+
+Esto permite que la clase obtenga funcionalidades de otras sin heredarlas directamente.
+
+## Delegation
+
+Se refiere a delegar ciertas tareas a instancias contenidas:
+
+```java
+public class Gerente {
+
+  Empleado empleado = new Empleado();
+  
+  public int getBonificacion() {
+    return empleado.calcularBonificacion(); 
+  }
+
+}
+```
+
+>- Se basa en delegar ciertas tareas a los objetos contenidos.
+>- La ventaja es que se puede cambiar el objeto delegado dinámicamente.
+>- Hace que no se dependa de una clase en particular, sino de una abstracción.
+>- Requiere métodos wrapper que llamen al delegado.
+
+El gerente delego el cálculo de bonificación al empleado que contiene.
+
+## Ventajas
+
+- Permite extender funcionalidades sin herencia directa.
+- Evita herencias complejas y acopladas.
+- Facilita el testing y mantenimiento.
+
+## Desventajas
+
+- Aumenta un poco la complejidad.
+- Requiere encapsular correctamente.
+
+>En resumen, en Java existen mecanismos para simular la herencia múltiple de forma flexible. Cada mecanismo tiene ventajas y desventajas, y se escoge según el contexto y necesidades del modelo orientado a objetos que se esté implementando en Java.
+
+Aquí un resumen sobre la herencia múltiple en Java utilizando interfaces:
+
+# Herencia Múltiple con Interfaces
+
+Es la forma más común de lograr "herencia múltiple" en Java.
+
+## Sintaxis
+
+Una clase puede implementar varias interfaces separadas por comas:
+
+```java
+public class MiClase implements Interface1, Interface2 {
+
+  //implementación
+
+}
+```
+
+## Características
+
+- Una interfaz sólo declara la firma de los métodos, no los implementa.
+
+- La clase debe definir todos los métodos declarados por las interfaces.
+
+- Las interfaces se enfocan en el comportamiento que debe tener la clase.
+
+- Las interfaces son implícitamente abstractas. 
+
+## Ejemplo
+
+```java
+interface Nadador {
+  void nadar(); 
+}
+
+interface Caminante {
+  void caminar();
+}
+
+public class Perro implements Nadador, Caminante {
+
+  @Override
+  public void nadar() {
+    System.out.println("Perro nadando...");
+  }
+
+  @Override
+  public void caminar() {
+    System.out.println("Perro caminando...");
+  }
+
+}
+```
+
+## Ventajas
+
+- Permite modelar comportamientos independientes e implementarlos en una sola clase.
+
+- La clase obtiene métodos de varias interfaces por composición.
+
+- Bajo acoplamiento entre interfaces.
+
+- Las interfaces son fáciles de refactorizar.
+
+>Las interfaces proveen una forma de lograr herencia múltiple limitada a tipo de comportamiento en Java.
