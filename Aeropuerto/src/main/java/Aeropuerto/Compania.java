@@ -14,7 +14,7 @@ public class Compania {
         listaVuelos = v;
         nVuelo = v.length;
     }
-    public void isertarVuelo(Vuelo vuelo){
+    public void insertarVuelo(Vuelo vuelo){
         listaVuelos[nVuelo] = vuelo;
         nVuelo++;
     }
