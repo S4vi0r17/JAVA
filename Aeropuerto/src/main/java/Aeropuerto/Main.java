@@ -27,7 +27,7 @@ public class Main {
         a[1].insertarCompania(new Compania("Lufthansa"));
         a[1].getCompania("AirFrance").insertarVuelo(new Vuelo("AF123", "París", "Nueva York", 300.50, 200));
         a[1].getCompania("AirFrance").insertarVuelo(new Vuelo("AF124", "París", "Tokio", 600.75, 250));
-        a[1].getCompania("Lufthansa").insertarVuelo(new Vuelo("LH456", "París", "Frankfurt", 120.30, 150));
+        a[1].getCompania("Lufthansa").insertarVuelo(new Vuelo("LH456", "París", "Tokio", 120.30, 150));
         a[1].getCompania("AirFrance").getVuelo("AF123").insertarPasajero(new Pasajero("Sophie", "FRA567", "Francesa"));
         a[1].getCompania("AirFrance").getVuelo("AF123").insertarPasajero(new Pasajero("Michael", "USA890", "Estadounidense"));
         a[1].getCompania("Lufthansa").getVuelo("LH456").insertarPasajero(new Pasajero("Anna", "GER234", "Alemana"));
@@ -53,6 +53,9 @@ public class Main {
     }
     public static void menu(){
         int opc;
+        String nameAeropuerto, nameCompania, origen, destino;
+        Aeropuerto aeropuertoSelect;
+        Compania compania;
         do {
             System.out.println("\n\t\t\t__MENU__");
             System.out.println("[1] Ver aeropuertos(publicos/privados)");
@@ -67,17 +70,49 @@ public class Main {
                 case 1 -> mostrarDatosAeropuertos(aeropuertos);
                 case 2 -> mostrarPatrocinio(aeropuertos);
                 case 3 -> {
-
+                    System.out.println("\nAeropuertos disponibles: ");
+                    for (Aeropuerto aeropuerto : aeropuertos) {
+                        System.out.println(" - " + aeropuerto.getNombre());
+                    }
+                    scanner.nextLine();
+                    System.out.print("Digite el nombre de algun aeropuerto: ");
+                    nameAeropuerto = scanner.nextLine();
+                    aeropuertoSelect = buscarAeropuerto(nameAeropuerto,aeropuertos);
+                    if (aeropuertoSelect == null){
+                        System.out.println("Error al digitar el nombre DX");
+                    }else{
+                        mostrarCompanias(aeropuertoSelect);
+                    }
                 }
                 case 4 -> {
-
+                    System.out.println("\nAeropuertos disponibles: ");
+                    for (Aeropuerto aeropuerto : aeropuertos) {
+                        System.out.println(" - " + aeropuerto.getNombre());
+                    }
+                    scanner.nextLine();
+                    System.out.print("Digite el nombre de un aeropuerto: ");
+                    nameAeropuerto = scanner.nextLine();
+                    aeropuertoSelect = buscarAeropuerto(nameAeropuerto,aeropuertos);
+                    if (aeropuertoSelect == null){
+                        System.out.println("Error al digitar el nombre DX");
+                    }else{
+                        mostrarCompanias(aeropuertoSelect);
+                        System.out.print("Digite el nombre de una compania: ");
+                        nameCompania = scanner.nextLine();
+                        compania = aeropuertoSelect.getCompania(nameCompania);
+                        mostrarVuelos(compania);
+                    }
                 }
                 case 5 -> {
-
+                    scanner.nextLine();
+                    System.out.print("\nDigite una ciudad origen: ");
+                    origen = scanner.nextLine();
+                    System.out.print("Digite la ciudad de destino: ");
+                    destino = scanner.nextLine();
+                    mostrarVueloOD(origen,destino,aeropuertos);
                 }
                 case 6 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opcion incorrecta DX");
-
             }
         }while (opc != 6);
     }
@@ -123,5 +158,80 @@ public class Main {
             }
             System.out.println("");
         }
+    }
+    public static Aeropuerto buscarAeropuerto(String nombre, Aeropuerto[] listaDeAeropuertos){
+        boolean encontrado = false;
+        int i = 0;
+        Aeropuerto aeropuerto = null;
+        while (!encontrado && i < listaDeAeropuertos.length){
+            if (nombre.equals(listaDeAeropuertos[i].getNombre())){
+                encontrado = true;
+                aeropuerto = listaDeAeropuertos[i];
+            }
+            i++;
+        }
+        return aeropuerto;
+    }
+    public static void mostrarCompanias(Aeropuerto aeropuerto){
+        System.out.println("\nLista de compañias: ");
+        for (int i = 0 ; i < aeropuerto.getnCompania(); i++) {
+            System.out.println(" - " + aeropuerto.getCompania(i).getNombre());
+        }
+    }
+    public static void mostrarVuelos(Compania compania){
+        Vuelo vuelo;
+        System.out.println("\nLos vuelos de la compania " + compania.getNombre());
+        for (int i = 0 ; i < compania.getnVuelo() ; i++){
+            vuelo = compania.getVuelo(i);
+            System.out.println("\nIdentificador de Vuelo: " + vuelo.getIdentificadorVuelo() +
+                    "\nCiudad de origen: " + vuelo.getCiudadOrigen() +
+                    "\nCiudad de destino: " + vuelo.getCiudadDestino() +
+                    "\nPrecio: $" + vuelo.getPrecio());
+            System.out.println("");
+        }
+    }
+    public static void mostrarVueloOD(String origen, String destino, Aeropuerto[] aeropuertos){
+        Vuelo[] vuelos;
+        vuelos = buscarVuelos(origen,destino,aeropuertos);
+        if (vuelos.length==0){
+            System.out.println("No esxisten vuelos de " + origen + " a " + destino);
+        }else {
+            System.out.println("\nVuelos encontrados: ");
+            for (int i = 0; i < vuelos.length; i++) {
+                System.out.println("\nIdentificador : " + vuelos[i].getIdentificadorVuelo() +
+                        "\nCiudad de origen: " + vuelos[i].getCiudadOrigen() +
+                        "\nCiudad de destino: " + vuelos[i].getCiudadDestino() +
+                        "\nPrecio: $" + vuelos[i].getPrecio());
+                System.out.println("");
+            }
+        }
+    }
+    public static Vuelo[] buscarVuelos(String origen, String destino, Aeropuerto[] aeropuertos){
+        Vuelo vuelo, listaVuelos[];
+        int contador = 0;
+        for (int i = 0 ; i< aeropuertos.length;i++){ // Para aeropuertos
+            for (int j = 0 ; j< aeropuertos[i].getnCompania();j++){ // Para companias
+                for (int k = 0 ; k< aeropuertos[i].getCompania(j).getnVuelo();k++){
+                    vuelo = aeropuertos[i].getCompania(j).getVuelo(k);
+                    if (origen.equals(vuelo.getCiudadOrigen()) && destino.equals(vuelo.getCiudadDestino())){
+                        contador++;
+                    }
+                }
+            }
+        }
+        listaVuelos = new Vuelo[contador];
+        int q = 0;
+        for (int i = 0 ; i< aeropuertos.length;i++){ // Para aeropuertos
+            for (int j = 0 ; j< aeropuertos[i].getnCompania();j++){ // Para companias
+                for (int k = 0 ; k< aeropuertos[i].getCompania(j).getnVuelo();k++){
+                    vuelo = aeropuertos[i].getCompania(j).getVuelo(k);
+                    if (origen.equals(vuelo.getCiudadOrigen()) && destino.equals(vuelo.getCiudadDestino())){
+                        listaVuelos[q] = vuelo;
+                        q++;
+                    }
+                }
+            }
+        }
+        return listaVuelos;
     }
 }
