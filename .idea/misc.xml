@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Aeropuerto/pom.xml" />
+        <option value="$PROJECT_DIR$/Class-Objects/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio1/Ejercicio2/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio1/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio10/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio2/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio3/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio4/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio5/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio6/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio7/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio8/pom.xml" />
+        <option value="$PROJECT_DIR$/Ejercicio9/pom.xml" />
+        <option value="$PROJECT_DIR$/FinalClassesMethods/pom.xml" />
+        <option value="$PROJECT_DIR$/Inheritance/pom.xml" />
+        <option value="$PROJECT_DIR$/Intefaces/pom.xml" />
+        <option value="$PROJECT_DIR$/OverrideMembers/pom.xml" />
+        <option value="$PROJECT_DIR$/abstractClassesMethods/pom.xml" />
+        <option value="$PROJECT_DIR$/accessModifiers/pom.xml" />
+        <option value="$PROJECT_DIR$/encapsulation/pom.xml" />
+        <option value="$PROJECT_DIR$/methodOverloading/pom.xml" />
+        <option value="$PROJECT_DIR$/polymorphism/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-20" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
